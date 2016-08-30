@@ -11,12 +11,12 @@ Review of computer operations and an introduction to the Java SDK, editor and co
  1. Introductions
  2. syllabus
  3. Coding Standards (make things: easy to read, simple, idiomatic)
- 4. What is Java? 
-  1. The language
-  2. The history
-  3. The use cases
+ 4. What is Java?
+  1. The language (C-Style, mandatory object orientation, namespace system, library system)
+  2. The history (Sun microsystems, Oracle)
+  3. The use cases (web applets, gui apps, server apps)
   4. Architecture (JVM, bytecode, garbage collection, object oriented)
-  5. editors / ides
+  5. editors / ides (Eclipse, other)
   6. compiler / runtime
  5. Hello World
  6. Hello arguments
@@ -31,3 +31,39 @@ Review of computer operations and an introduction to the Java SDK, editor and co
   3. How do you combine them?
   4. How do you translate between them?
   5. How do you represent them?
+
+
+
+### Java Installation
+
+First, you need to download + install the JDK (java dev kit)
+[java download site](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+
+You can see if it is installed with these commands.
+```
+java -version
+javac -version
+```
+
+Java is the runtime, while javac is the compiler. Because we are writing code and not just
+running it, you will need both.
+
+
+### Eclipse Installation
+
+We will use Java 8 and eclipse for this class. Actually, you can use whatever you want as far as editors go.
+Eclipse just happens to be free and well known in the industry. At work, I use an IDE called
+IntelliJ, which is not free. They have a more limited free version though, so use it if you like.
+
+[Eclipse download link](https://eclipse.org/downloads/)
+
+
+### Online editors
+
+If you happen to have trouble getting set up and just need to work on an assignment immediately,
+you can always try an online code editor/compiler. Please understand that anything you type
+on one of these sites is going to be entered into somebody's server somewhere.
+
+[compilejava.net](https://www.compilejava.net/)
+
+[ideone - has adverts](https://ideone.com/)
