@@ -15,10 +15,13 @@
   1. review of homework for week 3.
   2. review of homework for week 4.
  3. More on arrays.
-  1. a sorting algorithm coded out (Bubble sort or Insertion sort because it is easy to code (they are not efficient))
-  2. Inserting elements into arrays
-  3. resizing arrays
-  4. removing elements from arrays
+  1. Inserting elements into arrays
+    1. Go over Array Prepend
+    2. Write Array append to end in classes
+    3. show insert example code.
+  2. resizing arrays - why can't you do this? Why do you have to ma copies?
+  3. removing elements from arrays
+  4. a sorting algorithm coded out (Bubble sort or Insertion sort because it is easy to code (they are not efficient))
   5. making arrays so large that the memory is consumed and your program crashes
 
 ## New Content Agenda
