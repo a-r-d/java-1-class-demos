@@ -27,6 +27,10 @@ public class OhNoTooMuchMemory {
 		// what is the default?
 		// -Xmx1g
 		// -Xmx4g
+		
+		// a cool blog:
+		// http://jvns.ca/blog/2016/04/23/java-garbage-collection-can-be-really-slow/
+		
 	}
 	
 	public static void printMemoryUsage() {
