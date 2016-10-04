@@ -1,6 +1,14 @@
 # week 6
 
 
+## Agenda
+
+ 1. go over powerpoint 1
+ 2. go over powerpoint 2
+ 3. do exercise on cats
+ 4. do exercise on dogs
+ 5. go over homework.
+
 ## What is a class
 
 You can think of classes as nouns and methods as verbs. You create classes (things - nouns) and do stuff to them (actions - verbs). It is that simple usually.
