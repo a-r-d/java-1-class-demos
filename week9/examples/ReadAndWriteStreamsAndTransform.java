@@ -14,7 +14,7 @@ public class ReadAndWriteStreamsAndTransform {
 	public static void main(String[] args) throws Exception {
 
 		// this is from the datasets that I provided on github
-		Path file = Paths.get(System.getProperty("user.dir")).resolve("datasets").resolve("Average_Daily_Traffic_Counts.csv");
+Path file = Paths.get(System.getProperty("user.dir")).resolve("datasets").resolve("Average_Daily_Traffic_Counts.csv");
 		
 		// this resolves a file next to the original one, in the same dir.
 		Path writeToFile = file.resolveSibling("copy_of_traffic_counts.csv");
