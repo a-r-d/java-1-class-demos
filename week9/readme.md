@@ -2,6 +2,8 @@
 
 We will learn about reading and writing files. This covers chapters 10 and 11 from the book.
 
+![Files](./files.jpg)
+
 
 ## Datasets
 
