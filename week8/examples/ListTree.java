@@ -10,11 +10,12 @@ public class ListTree {
 
 	public static void main(String[] args) {
 
-		
-		Path currentPath = Paths.get(System.getProperty("user.dir"));
+		//Path currentPath = Paths.get(System.getProperty("user.dir"));
+		Path currentPath = Paths.get(
+				System.getProperty("user.home"), 
+				"projects");
 		
 		try {
-			
 			// this gets all the paths in a dir.
 			listDirAndFollow(currentPath, 0);
 			
@@ -26,8 +27,14 @@ public class ListTree {
 	
 	public static void listDirAndFollow(Path path, int depth) throws Exception{
 		BasicFileAttributes attributes = Files.readAttributes(path, BasicFileAttributes.class);
+		if(path.endsWith(".git")) {
+			return;
+		}
+		// case for directory
 		if(attributes.isDirectory()) {
 			depth++;
+			
+			// print for each directory
 			System.out.println(getSpacesForDepth(depth) + ">" + path.getFileName());
 			
 			// now call for each child:
@@ -36,14 +43,16 @@ public class ListTree {
 				listDirAndFollow(tmpPath, depth);
 			}
 		} else {
-			System.out.println(getSpacesForDepth(depth) + "-->" + path.getFileName());
+			
+			// Case for a file
+			System.out.println(getSpacesForDepth(depth) + " -->" + path.getFileName());
 		}
 	}
 	
 	public static String getSpacesForDepth(int depth) {
 		StringBuilder spaces = new StringBuilder();
 		for(int i = 0; i < depth; i++) {
-			spaces.append("  ");
+			spaces.append("    ");
 		}
 		return spaces.toString();
 	}
