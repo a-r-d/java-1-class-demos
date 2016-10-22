@@ -1,6 +1,8 @@
-# java-1-class-demos
+# Java 1 Class Demos
 
-Java 160 class demos for Cincinnati State Java 1 class.
+Java 160 class demos for Cincinnati State Java 1 class. 
+
+Each week contains the Java classes that were created to show in class for the demos, or during creation of the youtube videos. Please use this code to help you complete the homework assignments each week.
 
 
 ## Youtube Videos
