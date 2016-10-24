@@ -53,7 +53,7 @@ The collections framework is a group of classes and interfaces that are used to 
 
 Lists are like arrays that resize automatically. There are several types of lists but the most commonly used is ArrayList. LinkedList is also commonly used. This is getting into computer science but array list is fast at accessing randomly and linkedlist is fast adding and removing nodes.
 
-```
+```java
 
 // left side   .....    right side
 // INTERFACE .......... IMPLEMENTATION
@@ -82,7 +82,7 @@ Very important in solving computer science problems (AKA interview questions)!
 
 For maps to work work correctly, .hashCode and .equals should be implemented.
 
-```
+```java
 
 // left side   .....    right side
 // INTERFACE .......... IMPLEMENTATION
@@ -115,7 +115,7 @@ Map<String, String> map3 = new HashTable<>();
 
 A set is like a list where each element is unique. For sets to work correctly, .hashCode and .equals should be implemented.
 
-```
+```java
 
 // left side   .....    right side
 // INTERFACE .......... IMPLEMENTATION
