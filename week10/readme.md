@@ -12,6 +12,18 @@ and work problems. After this chapter you will have everything you need to
 start solving (or attempting) the majority of the problems.
 
 
+## First: You know arrays, now what is a LinkedList ??
+
+Linked list is like an array made of chain links. Each chain link
+is connected to the next chain link. 
+
+![linked-list-1](./images/linked-list-1.jpg)
+
+![linked-list-2](./images/linked-list-2.gif)
+
+
+
+
 ## What is a Generic?
 
 A generic is a placeholder for a class.
