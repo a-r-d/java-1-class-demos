@@ -162,8 +162,11 @@ how the vector works.
 Stack is a special datastructure that operates last in - first out. Very important
 in solving computer science problems (AKA interview questions)!
 
+![stack](./images/stack_representation.jpg)
 
 ## Queue
 
 Queue is a special datastructure that operates first in - first out. Very important
 in solving computer science problems (AKA interview questions)!
+
+![queue](./images/queue.svg.png)
