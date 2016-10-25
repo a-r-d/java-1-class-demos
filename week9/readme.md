@@ -10,6 +10,7 @@ We will learn about reading and writing files. This covers chapters 10 and 11 fr
  - Homework review - forms
  - Homework review - try/catch
  - Homework review - week 8
+ - Homework 8: how do you compare dates? What is a unix timestamp? How do you get them?
  - look @ week 4 "notes-on-code.md"
  - Don't capitalize Methods, that is not idiomatic java
  - Don't capitalize package names. This is reverse DNS format.
