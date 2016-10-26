@@ -14,14 +14,25 @@ start solving (or attempting) the majority of the problems.
 
 ## First: You know arrays, now what is a LinkedList ??
 
+This is an array. A contiguous block of memory that you can randomly access (by index position).
+
+![array](./images/array.gif)
+
+
 Linked list is like an array made of chain links. Each chain link
-is connected to the next chain link. 
+is connected to the next chain link.
 
 ![linked-list-1](./images/linked-list-1.jpg)
 
 ![linked-list-2](./images/linked-list-2.gif)
 
+### How are arrays and linked lists similar?
 
+ - __.add()__ element method (array has to resize though, and keep track of the last empty space)
+ - __.remove()__ element method
+ - __.get()__ element method (linked list has to traverse and count to find it though...)
+
+ So together they have these common methods which you may call a "List" nature. In fact this is how collections work. There are ArrayLists and LinkedLists but they are both lists.
 
 
 ## What is a Generic?
