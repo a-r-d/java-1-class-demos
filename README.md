@@ -15,3 +15,4 @@ There are a few youtube videos here to go along with the course content, I will 
 
 [Week 9 Videos Only](https://www.youtube.com/playlist?list=PLWRvoIK5KFylgeAzBUNnrY_ioXyItwbaX)
 
+[Week 10 Videos Only](https://www.youtube.com/playlist?list=PLWRvoIK5KFyk2zkepKO2Ds2qhwwxH9H_-)
