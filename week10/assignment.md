@@ -7,7 +7,7 @@ You will create a program that will allow you to practice using the collections 
 1. This program will begin by reading in 3 sentences the user enters by typing into the console (System.in). You can
 use Scanner and call .nextLine() to read in the 3 sentences.
 2. Split each sentence into words. You can do this by splitting on space character.
-3. Take each word and add it to a List of strings (List&gt;String&lt; is the type). You will use the same list for each sentence.
+3. Take each word and add it to a List of strings (List&lt;String&gt; is the type). You will use the same list for each sentence.
 4. When you are done reading in all of the sentences and adding all of the sentences, and collecting all of the words into a list, print out how many words TOTAL were entered.
 5. Now, create a Set of type "Set&lt;String&gt;" from your List. Your set will enforce uniqueness. Print out how many unique words there are.
 6. Next, create a Map of type "Map&lt;String, Integer&gt;" to count how many times each word was used. Please see the example program "CountWordInstances.java" if you need a hint of how to do this.
