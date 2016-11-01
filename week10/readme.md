@@ -1,3 +1,15 @@
+# Week 10 agenda
+
+ - Homework review / help
+ - You can use class variables to pass data between steps in the homeworks.
+ - for homework 8 I showed you an example of searching a file directory recursively. You DO NOT need to do that! Just listing out the contents of the directory without going any deeper is fine. All it takes is a loop.
+ - You can always put in a breakpoint and step through with a debugger when you get stuck
+ - Don't set Charset when writing a file in your homework. It will give you problems.
+ - Don't catch exceptions if you are not going to do anything with them...
+ - Be careful about when you are closing streams
+ - Any question or suggestions on any of the homework? Please turn in old homework!
+ - Generics + Collections.
+
 # Week 10: Collections Framework and Generics
 
 This is probably the most important chapter and section of the book to learn and study
