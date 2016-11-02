@@ -34,7 +34,7 @@
   6. Once the use enters a valid file that exists, create a "BasicFileAttributes" object using Files.readAttributes().
   7. Check if the file is a directory. If not, re-prompt the user to enter a filepath that points to a directory!
   8. Once the user enters a valid, existing directory, list the contents of the directory and display this to the user.
-  9. Count how many plain files there are inside of the directory, print the count.
+  9. Count how many plain files (isRegularFile() on BasicFileAttributes) there are inside of the directory, print the count.
   10. Count how many directories are inside of this dir, print the count.
   11. what is the most recently created file in this dir? Print it out.
   12. What is the oldest file in this dir? Print it out.
