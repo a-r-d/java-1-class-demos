@@ -17,8 +17,8 @@ For this part please use the Date Format mask:
 
 1. Create a class called ```Lizard```. If should have 2 attributes:
 ```java
-  public String name;
-  public float age; // in years.
+    public String name;
+    public float age; // in years.
 ```
 2. Implement Comparable on the Lizard. You must compare it to another Lizard (see ```Cat.java``` for clues).
 3. In the ```compareTo()``` method you implement on lizard do the following:
