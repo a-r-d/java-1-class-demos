@@ -11,6 +11,8 @@ There are a few youtube videos here to go along with the course content, I will 
 
 [This playlist contains all of the course videos.](https://www.youtube.com/playlist?list=PLWRvoIK5KFynq0EMB2tJ3itY2l1gm8EE4)
 
+## Each specific week's videos:
+
 [Week 8 Videos Only](https://www.youtube.com/playlist?list=PLWRvoIK5KFyniQYKYZLwCQP1HMTiv9sut)
 
 [Week 9 Videos Only](https://www.youtube.com/playlist?list=PLWRvoIK5KFylgeAzBUNnrY_ioXyItwbaX)
@@ -18,3 +20,5 @@ There are a few youtube videos here to go along with the course content, I will 
 [Week 10 Videos Only](https://www.youtube.com/playlist?list=PLWRvoIK5KFyk2zkepKO2Ds2qhwwxH9H_-)
 
 [Week 11 Videos Only](https://www.youtube.com/playlist?list=PLWRvoIK5KFymKqKUPLkLySoZno9cUACHq)
+
+[Week 12 videos Only](https://www.youtube.com/playlist?list=PLWRvoIK5KFylpbX_0dFKre1SRhvRFHIwJ)
