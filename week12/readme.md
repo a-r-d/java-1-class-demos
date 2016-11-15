@@ -1,5 +1,7 @@
 # Week 12 - Maven + Libraries
 
+[Related youtube video playlist](https://www.youtube.com/playlist?list=PLWRvoIK5KFylpbX_0dFKre1SRhvRFHIwJ)
+
 ## Agenda
 
  - Go over homework last week

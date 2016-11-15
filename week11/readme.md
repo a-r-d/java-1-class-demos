@@ -2,6 +2,8 @@
 
 This week we will review collections, and talk about various topics in Chapter 15.
 
+[Related youtube video playlist](https://www.youtube.com/playlist?list=PLWRvoIK5KFymKqKUPLkLySoZno9cUACHq)
+
 ## Agenda
 
  - Homework questions
