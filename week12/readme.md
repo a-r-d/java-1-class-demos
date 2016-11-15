@@ -56,6 +56,10 @@ Where do you get this stuff? Usually it will be right on the project's website s
 
 Create a new project. Right click on it and do "configure...". Click "convert to Maven project" from the menu. You will get a new file called "pom.xml". The pom is what is used to configure maven. Open this and flip to "dependencies" tab.  Now, you can add in the OkHttp dependency above.  
 
+
+[Oh yeah, what is JSON? Watch this video](https://www.youtube.com/watch?v=WWa0cg_xMC8)
+
+
 ```java
 
 package week12;
