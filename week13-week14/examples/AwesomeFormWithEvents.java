@@ -60,7 +60,7 @@ public class AwesomeFormWithEvents extends JFrame implements ActionListener {
 	}
 	
 	public void center() {
-		Utilities.CenterScreen(this);
+		CUtilities.CenterScreen(this);
 	}
 
 	@Override
