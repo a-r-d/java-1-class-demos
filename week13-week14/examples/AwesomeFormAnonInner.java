@@ -57,7 +57,7 @@ public class AwesomeFormAnonInner extends JFrame{
 	}
 	
 	public void center() {
-		Utilities.CenterScreen(this);
+		CUtilities.CenterScreen(this);
 	}
 	
 }
