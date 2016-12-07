@@ -1,31 +1,34 @@
 // ----------------------------------------------------------------------
 // Name: Pat Callahan
-// Class: CListBox
-//			v2.1 - 2013/12/17 Selected item is blue - Douglas Heller
+// Class: CComboBox 
+//			v2.0 - 2013/12/02 InsertAt
+//			v2.1 - 2013/12/02 Ignore deselected item change event
+//			v2.2 - 2013/12/17 Selected item is blue - Douglas Heller
 // ----------------------------------------------------------------------
 
 
 // ----------------------------------------------------------------------
 // Package
 // ----------------------------------------------------------------------
-package Utilities;
+package utilities;
 
 
 // ----------------------------------------------------------------------
 // Imports
 // ----------------------------------------------------------------------
+import java.util.*;				// Arraylist
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 
 // ----------------------------------------------------------------------
-// Name: CListBox
-// Abstract: Make a listbox class that combines the list, list model
+// Name: CComboBox
+// Abstract: Make a ComboBox class that combines the list, list model
 //			and scrollbars all into one.  Add event firing too.
 // ----------------------------------------------------------------------
 @SuppressWarnings("serial")
-public class CListBox extends javax.swing.JComponent implements MouseListener
+public class CComboBox extends javax.swing.JComponent implements ItemListener
 {
 	
 	// ----------------------------------------------------------------------
@@ -40,9 +43,9 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	// Properties( never make public )
 	// ----------------------------------------------------------------------
 	// ----------------------------------------------------------------------
-	private DefaultListModel<CListItem> m_dlmListItems = null;
-	private JList<CListItem> m_lstList = null;
-	private JScrollPane m_scpList = null;
+	private DefaultComboBoxModel<CListItem> m_dcmListItems = null;
+	private JComboBox<CListItem> m_cmbList = null;
+	private ArrayList<ItemListener> m_alItemListeners = new ArrayList<ItemListener>( );
 	
 	private boolean m_blnSorted = true;				// Sort the list by default
 	private boolean m_blnQuiet = false;				// fire/don't fire events
@@ -56,16 +59,15 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 
 
 	// ----------------------------------------------------------------------
-	// Name: CListBox
+	// Name: CComboBox
 	// Abstract: Constructor
 	// ----------------------------------------------------------------------
-	public CListBox( )
+	public CComboBox( )
 	{
 		super( );
 		
 		try
 		{	
-	
 			Initialize( );		
 		}
 		catch( Exception excError )
@@ -90,21 +92,18 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 			this.setLayout( blDialog );		
 
 			// List model
-			m_dlmListItems = new DefaultListModel<CListItem>( );
+			m_dcmListItems = new DefaultComboBoxModel<CListItem>( );
 			
-			// List
-			m_lstList = new JList<CListItem>( m_dlmListItems );
-			m_lstList.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
-			m_lstList.addMouseListener( this );
-			
-			// Scroll Pane
-			m_scpList = new JScrollPane( m_lstList );
+			// Combo Box
+			m_cmbList = new JComboBox<CListItem>( m_dcmListItems );
+			m_cmbList.addItemListener( this );
+			m_cmbList.setBackground( Color.white );
 			
 			// ListItemRenderer - From Douglas Heller 2013/12/17
-			m_lstList.setCellRenderer( new CListItemRenderer( ) );
-
+			m_cmbList.setRenderer( new CListItemRenderer( ) );
+			
 			// Add to component			
-			this.add( m_scpList );
+			this.add( m_cmbList );
 		}
 		catch( Exception excError )
 		{
@@ -114,47 +113,6 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	}
 
 
-
-	// ----------------------------------------------------------------------
-	// Name: SetSelectionMode
-	// Abstract: Single, Single Interval or Multiple Intervale.
-	// ----------------------------------------------------------------------
-	public void SetSelectionMode( int intNewSelectionMode )
-	{
-		try
-		{		
-			m_lstList.setSelectionMode( intNewSelectionMode );
-		}
-		catch( Exception excError )
-		{
-			// Display Error Message
-			CUtilities.WriteLog( excError );
-		}
-	}
-	
-
-	// ----------------------------------------------------------------------
-	// Name: GetSelectionMode
-	// Abstract: Single, Single Interval or Multiple Intervale.
-	// ----------------------------------------------------------------------
-	public int GetSelectionMode( )
-	{
-		int intSelectionMode = 0;
-		
-		try
-		{		
-			intSelectionMode = m_lstList.getSelectionMode( );
-		}
-		catch( Exception excError )
-		{
-			// Display Error Message
-			CUtilities.WriteLog( excError );
-		}
-		
-		// Return result
-		return intSelectionMode;
-	}
-	
 
 	// ----------------------------------------------------------------------
 	// Name: AddItem
@@ -163,7 +121,6 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	public int AddItemToList( int intValue, String strName )
 	{
 		int intNewItemIndex = 0;
-		
 		try
 		{		
 			CListItem clsNewItem = new CListItem( intValue, strName );
@@ -175,7 +132,6 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 			// Display Error Message
 			CUtilities.WriteLog( excError );
 		}
-		
 		// Return result		
 		return intNewItemIndex;
 	}
@@ -188,7 +144,6 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	public int AddItemToList( int intValue, String strName, boolean blnSelect )
 	{
 		int intNewItemIndex = 0;
-		
 		try
 		{	
 			CListItem clsNewItem = new CListItem( intValue, strName );
@@ -213,7 +168,6 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	public int AddItemToList( CListItem clsNewItem )
 	{
 		int intNewItemIndex = 0;
-		
 		try
 		{		
 			intNewItemIndex = AddItemToList( clsNewItem, true );
@@ -223,7 +177,6 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 			// Display Error Message
 			CUtilities.WriteLog( excError );
 		}
-		
 		// Return result		
 		return intNewItemIndex;
 	}
@@ -236,23 +189,22 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	public int AddItemToList( CListItem clsNewItem, boolean blnSelect )
 	{
 		int intNewItemIndex = 0;
-		
 		try
 		{	
 			// Sorted?
 			if( m_blnSorted == true )
 			{
 				// Yes, find out where it should go
-				intNewItemIndex = FindSortedIndex( m_dlmListItems, clsNewItem.GetName( ) );
+				intNewItemIndex = FindSortedIndex( m_dcmListItems, clsNewItem.GetName( ) );
 			}
 			else
 			{
 				// No, add it to the end
-				intNewItemIndex = m_dlmListItems.getSize( );	
+				intNewItemIndex = m_dcmListItems.getSize( );	
 			}
 			
 			// Insert at the specified location
-			m_dlmListItems.insertElementAt( clsNewItem, intNewItemIndex );
+			m_dcmListItems.insertElementAt( clsNewItem, intNewItemIndex );
 			
 			// Select?
 			if( blnSelect == true ) SetSelectedIndex( intNewItemIndex );
@@ -273,19 +225,18 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	// Abstract: Given a name find its sorted location in the list.
 	//			Use bisection method.
 	// ----------------------------------------------------------------------
-	private int FindSortedIndex( DefaultListModel<CListItem> dlmListItems, String strNewName )
+	private int FindSortedIndex( DefaultComboBoxModel<CListItem> dcmListItems, String strNewName )
 	{
 		int intNewItemIndex = 0;
-		
 		try
 		{		
 			int intStartIndex = 0;
-			int intStopIndex = dlmListItems.getSize( ) - 1;	// 0 based
+			int intStopIndex = dcmListItems.getSize( ) - 1;	// 0 based
 			int intMiddleIndex = 0;
 			String strCurrentName = "";
 			
 			// Empty list?
-			if( dlmListItems.isEmpty( ) == false )
+			if( dcmListItems.getSize( ) > 0 )
 			{
 				// Bisect the list
 				while( intStartIndex < intStopIndex )
@@ -294,7 +245,7 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 					intMiddleIndex = ( intStopIndex + intStartIndex ) / 2;
 	
 					// Get the middle text
-					strCurrentName = dlmListItems.getElementAt( intMiddleIndex ).toString( );
+					strCurrentName = dcmListItems.getElementAt( intMiddleIndex ).toString( );
 	
 					// Less than middle?
 					if( strNewName.compareToIgnoreCase( strCurrentName ) < 0 ) 
@@ -313,7 +264,7 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 				intNewItemIndex = intStartIndex;
 	
 				// 1 last compare.  Goes before or after current spot?
-				strCurrentName = dlmListItems.getElementAt( intNewItemIndex ).toString( );
+				strCurrentName = dcmListItems.getElementAt( intNewItemIndex ).toString( );
 	
 				// Insert after?
 				if( strNewName.compareToIgnoreCase( strCurrentName ) >= 0 ) intNewItemIndex++;
@@ -330,15 +281,113 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	}
 
 
+    // ----------------------------------------------------------------------
+	// Name: InsertItemInList
+	// Abstract: Insert an item into list
+	// ----------------------------------------------------------------------
+	public int InsertItemInList( int intValue, String strName, int intInsertIndex )
+	{
+
+		try
+		{		
+			CListItem clsNewItem = new CListItem( intValue, strName );
+
+			intInsertIndex = InsertItemInList( clsNewItem, true, intInsertIndex );
+		}
+		catch( Exception excError )
+		{
+			// Display Error Message
+			CUtilities.WriteLog( excError );
+		}
+		// Return result		
+		return intInsertIndex;
+	}
+	
+
+	// ----------------------------------------------------------------------
+	// Name: InsertItemInList
+	// Abstract: Insert an item into list
+	// ----------------------------------------------------------------------
+	public int InsertItemInList( int intValue, String strName, boolean blnSelect, int intInsertIndex )
+	{
+
+		try
+		{	
+			CListItem clsNewItem = new CListItem( intValue, strName );
+
+			intInsertIndex = InsertItemInList( clsNewItem, blnSelect, intInsertIndex );			
+		}
+		catch( Exception excError )
+		{
+			// Display Error Message
+			CUtilities.WriteLog( excError );
+		}
+		
+		// Return result		
+		return intInsertIndex;
+	}
+
+
+	// ----------------------------------------------------------------------
+	// Name: InsertItemInList
+	// Abstract: Insert an item into list
+	// ----------------------------------------------------------------------
+	public int InsertItemInList( CListItem clsNewItem, int intInsertIndex )
+	{
+
+		try
+		{		
+			intInsertIndex = InsertItemInList( clsNewItem, true, intInsertIndex );
+		}
+		catch( Exception excError )
+		{
+			// Display Error Message
+			CUtilities.WriteLog( excError );
+		}
+		
+		// Return result		
+		return intInsertIndex;
+	}
+
+	
+	// ----------------------------------------------------------------------
+	// Name: InsertItemInList
+	// Abstract: Insert an item into list
+	// ----------------------------------------------------------------------
+	public int InsertItemInList( CListItem clsNewItem, boolean blnSelect, int intInsertIndex )
+	{
+		try
+		{	
+			// Boundary check
+			if( intInsertIndex <                        0 )  intInsertIndex = 0;
+			if( intInsertIndex > m_dcmListItems.getSize( ) ) intInsertIndex = m_dcmListItems.getSize( );
+			
+			// Insert at the specified location
+			m_dcmListItems.insertElementAt( clsNewItem, intInsertIndex );
+			
+			// Select?
+			if( blnSelect == true ) SetSelectedIndex( intInsertIndex );
+		}
+		catch( Exception excError )
+		{
+			// Display Error Message
+			CUtilities.WriteLog( excError );
+		}
+		
+		// Return result		
+		return intInsertIndex;
+	}
+
+
 	// ----------------------------------------------------------------------
 	// Name: HighlightNextInList
 	// Abstract: Highlight next closest item in the list
 	// ----------------------------------------------------------------------
-	public void HighlightNextInList( int intIndex )
+	private void HighlightNextInList( int intIndex )
 	{
 		try
 		{
-			int intListItemsCount = m_dlmListItems.getSize( );
+			int intListItemsCount = m_dcmListItems.getSize( );
 			
 	   		// Are there any items in the list( might have deleted the last one )?
 			if( intListItemsCount > 0 )
@@ -351,8 +400,7 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 				}
 	
 		        // Select next closest item
-				m_lstList.setSelectedIndex( intIndex );
-				m_lstList.ensureIndexIsVisible( intIndex );
+				m_cmbList.setSelectedIndex( intIndex );
 			}
 		}
 		catch( Exception excError )
@@ -372,10 +420,10 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 		try
 		{	
 			// Boundary check
-			if( intIndex >= 0 && intIndex < m_dlmListItems.getSize( ) )
+			if( intIndex >= 0 && intIndex < m_dcmListItems.getSize( ) )
 			{
 				// Remove it
-				m_dlmListItems.removeElementAt( intIndex );
+				m_dcmListItems.removeElementAt( intIndex );
 				
 				// Select next item
 				HighlightNextInList( intIndex );
@@ -397,7 +445,7 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	{
 		try
 		{		
-			m_dlmListItems.clear( );
+			m_dcmListItems.removeAllElements( );
 		}
 		catch( Exception excError )
 		{
@@ -414,15 +462,13 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	public boolean GetSorted( )
 	{
 		try
-		{		
-
+		{	
 		}
 		catch( Exception excError )
 		{
 			// Display Error Message
 			CUtilities.WriteLog( excError );
 		}
-
 		return m_blnSorted;
 	}
 
@@ -458,16 +504,6 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	// ----------------------------------------------------------------------
 	public boolean GetQuiet( )
 	{
-		try
-		{		
-
-		}
-		catch( Exception excError )
-		{
-			// Display Error Message
-			CUtilities.WriteLog( excError );
-		}
-
 		return m_blnQuiet;
 	}
 
@@ -479,7 +515,7 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	public void SetQuiet( boolean blnQuiet )
 	{
 		try
-		{		
+		{	
 			m_blnQuiet = blnQuiet;
 		}
 		catch( Exception excError )
@@ -498,17 +534,17 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	{
 		try
 		{
-			DefaultListModel<CListItem> dlmSortedListItems = new DefaultListModel<CListItem>( );
+			DefaultComboBoxModel<CListItem> dlmSortedListItems = new DefaultComboBoxModel<CListItem>( );
 			int intIndex = 0;
 			CListItem clsItem = null;
 			String strName = "";
 			int intNewItemIndex = 0;
 			
 			// Create a new list and add all items to it 1 at a time in order
-			for( intIndex = 0; intIndex < m_dlmListItems.getSize( ); intIndex++ )
+			for( intIndex = 0; intIndex < m_dcmListItems.getSize( ); intIndex++ )
 			{
 				// Next item
-				clsItem = ( CListItem )m_dlmListItems.getElementAt( intIndex );
+				clsItem = ( CListItem )m_dcmListItems.getElementAt( intIndex );
 				
 				// Name
 				strName = clsItem.GetName( );
@@ -521,12 +557,12 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 			}
 			
 			// Clear old list and set to null
-			m_dlmListItems.clear( );
-			m_dlmListItems = null;
+			m_dcmListItems.removeAllElements( );
+			m_dcmListItems = null;
 			
 			// Set old list to new sorted list
-			m_dlmListItems = dlmSortedListItems;
-			m_lstList.setModel( m_dlmListItems );
+			m_dcmListItems = dlmSortedListItems;
+			m_cmbList.setModel( m_dcmListItems );
 			
 		}
 		catch( Exception excError )
@@ -543,41 +579,33 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	// ----------------------------------------------------------------------
 	public int Length( )
 	{
-		int intLength = 0;
-		
 		try
-		{		
-			intLength = m_dlmListItems.size( );
+		{	
 		}
 		catch( Exception excError )
 		{
 			// Display Error Message
 			CUtilities.WriteLog( excError );
 		}
-		
-		return intLength;
+		return m_dcmListItems.getSize( );
 	}
 
 
 	// ----------------------------------------------------------------------
 	// Name: GetSelectedIndex
-	// Abstract: Index of the first selected item.
+	// Abstract: Which item is selected?
 	// ----------------------------------------------------------------------
 	public int GetSelectedIndex( )
 	{
-		int intSelectedIndex = 0;
-		
 		try
-		{		
-			intSelectedIndex = m_lstList.getSelectedIndex( );
+		{	
 		}
 		catch( Exception excError )
 		{
 			// Display Error Message
 			CUtilities.WriteLog( excError );
 		}
-		
-		return intSelectedIndex;
+		return m_cmbList.getSelectedIndex( );
 	}
 
 
@@ -590,11 +618,10 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 		try
 		{	
 			// Boundary check
-			if( intSelectedIndex >= -1 && intSelectedIndex < m_dlmListItems.getSize( ) )
+			if( intSelectedIndex >= -1 && intSelectedIndex < m_dcmListItems.getSize( ) )
 			{
 				// Select it
-				m_lstList.setSelectedIndex( intSelectedIndex );
-				m_lstList.ensureIndexIsVisible( intSelectedIndex );
+				m_cmbList.setSelectedIndex( intSelectedIndex );
 			}
 		}
 		catch( Exception excError )
@@ -638,50 +665,6 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 		}
 	}
 
-	
-	
-	// ----------------------------------------------------------------------
-	// Name: GetSelectedIndices
-	// Abstract: Indexes of all selected items.
-	// ----------------------------------------------------------------------
-	public int[] GetSelectedIndices( )
-	{
-		int aintSelectedIndices[] = new int[ 0 ];
-		
-		try
-		{		
-			aintSelectedIndices = m_lstList.getSelectedIndices( );
-		}
-		catch( Exception excError )
-		{
-			// Display Error Message
-			CUtilities.WriteLog( excError );
-		}
-		
-		return aintSelectedIndices;
-	}
-
-
-	// ----------------------------------------------------------------------
-	// Name: SetSelectedIndices
-	// Abstract: Select the specified items
-	// ----------------------------------------------------------------------
-	public void SetSelectedIndices( int aintIndicesToSelect[ ] )
-	{
-		try
-		{	
-			// Select all
-			m_lstList.setSelectedIndices( aintIndicesToSelect );
-			
-			// Make sure first item is visible
-			m_lstList.ensureIndexIsVisible( aintIndicesToSelect[ 0 ] );
-		}
-		catch( Exception excError )
-		{
-			// Display Error Message
-			CUtilities.WriteLog( excError );
-		}
-	}
 
 
 	// ----------------------------------------------------------------------
@@ -694,7 +677,7 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 		
 		try
 		{	
-			blnEnabled = m_lstList.isEnabled( );
+			blnEnabled = m_cmbList.isEnabled( );
 		}
 		catch( Exception excError )
 		{
@@ -708,7 +691,7 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 
     // ----------------------------------------------------------------------
     // Name: setEnabled
-    // Abstract: Enable/Disable the listbox
+    // Abstract: Enable/Disable the combobox
 	//           Inspired by Elizabeth Hess 2012/04/04
     // 			 Hide JComponent setEnabled because this is a wrapper class
 	//			 which is why the method name is camelcase
@@ -717,7 +700,7 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
     {
         try
         {   
-            m_lstList.setEnabled( blnEnabled );
+            m_cmbList.setEnabled( blnEnabled );
         }
         catch( Exception excError )
         {
@@ -726,27 +709,6 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
         }
     }
      
-
-	// ----------------------------------------------------------------------
-	// Name: IsItemSelected
-	// Abstract: is the specified item selected?
-	// ----------------------------------------------------------------------
-	public boolean IsItemSelected( int intIndex )
-	{
-		boolean blnIsItemSelected = false;
-		
-        try
-        {   
-        	blnIsItemSelected = m_lstList.isSelectedIndex( intIndex );
-        }
-        catch( Exception excError )
-        {
-            // Display Error Message
-            CUtilities.WriteLog( excError );
-        }
-        
-		return blnIsItemSelected;
-	}
 
 
 	// ----------------------------------------------------------------------
@@ -759,10 +721,10 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 		try
 		{	
 			// Boundary check
-			if( intIndex >= 0 && intIndex < m_dlmListItems.getSize( ) )
+			if( intIndex >= 0 && intIndex < m_dcmListItems.getSize( ) )
 			{
 				// Get the selected item
-				clsItem = ( CListItem ) m_dlmListItems.getElementAt( intIndex );
+				clsItem = ( CListItem ) m_dcmListItems.getElementAt( intIndex );
 			}
 		}
 		catch( Exception excError )
@@ -788,10 +750,10 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 			CListItem clsItem = null;
 			
 			// Boundary check
-			if( intIndex >= 0 && intIndex < m_dlmListItems.getSize( ) )
+			if( intIndex >= 0 && intIndex < m_dcmListItems.getSize( ) )
 			{
 				// Get the selected item
-				clsItem = ( CListItem ) m_dlmListItems.getElementAt( intIndex );
+				clsItem = ( CListItem ) m_dcmListItems.getElementAt( intIndex );
 				
 				// Get the name
 				strItemName = clsItem.GetName( );
@@ -820,10 +782,10 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 			CListItem clsItem = null;
 			
 			// Boundary check
-			if( intIndex >= 0 && intIndex < m_dlmListItems.getSize( ) )
+			if( intIndex >= 0 && intIndex < m_dcmListItems.getSize( ) )
 			{
 				// Get the selected item
-				clsItem = ( CListItem ) m_dlmListItems.getElementAt( intIndex );
+				clsItem = ( CListItem ) m_dcmListItems.getElementAt( intIndex );
 				
 				// Get the Value
 				intItemValue = clsItem.GetValue( );
@@ -846,10 +808,9 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	public CListItem GetSelectedItem( )
 	{
 		CListItem clsSelectedItem = null;
-		
 		try
 		{	
-			int intSelectedIndex = m_lstList.getSelectedIndex( );
+			int intSelectedIndex = m_cmbList.getSelectedIndex( );
 			clsSelectedItem = GetItem( intSelectedIndex );
 		}
 		catch( Exception excError )
@@ -857,7 +818,6 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 			// Display Error Message
 			CUtilities.WriteLog( excError );
 		}
-		
 		// Return result
 		return clsSelectedItem;
 	}
@@ -871,10 +831,9 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	public String GetSelectedItemName( )
 	{
 		String strSelectedItemName = "";
-		
 		try
 		{	
-			int intSelectedIndex = m_lstList.getSelectedIndex( );
+			int intSelectedIndex = m_cmbList.getSelectedIndex( );
 			strSelectedItemName = GetItemName( intSelectedIndex );
 		}
 		catch( Exception excError )
@@ -882,7 +841,6 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 			// Display Error Message
 			CUtilities.WriteLog( excError );
 		}
-		
 		// Return result
 		return strSelectedItemName;
 	}
@@ -896,10 +854,9 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	public int GetSelectedItemValue( )
 	{
 		int intSelectedItemValue = 0;
-		
 		try
 		{	
-			int intSelectedIndex = m_lstList.getSelectedIndex( );
+			int intSelectedIndex = m_cmbList.getSelectedIndex( );
 			intSelectedItemValue = GetItemValue( intSelectedIndex );
 		}
 		catch( Exception excError )
@@ -907,10 +864,10 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 			// Display Error Message
 			CUtilities.WriteLog( excError );
 		}
-		
 		// Return result
 		return intSelectedItemValue;
 	}
+
 
 	// ----------------------------------------------------------------------
 	// ----------------------------------------------------------------------
@@ -919,28 +876,124 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 	// ----------------------------------------------------------------------
 
 	// ----------------------------------------------------------------------
-	// Name: mouseClicked
-	// Abstract: Handle mouseListener events
+	// Name: addItemListener
+	// Abstract: Add an item listener 
 	// ----------------------------------------------------------------------
-	public void mouseClicked( MouseEvent meSource )
+	public void addItemListener( ItemListener ilEventReceiver )
 	{
 		try
 		{	
-			MouseListener amlListBox[] = this.getMouseListeners( );
+			// Not null?
+			if( ilEventReceiver != null )
+			{
+				m_alItemListeners.add( ilEventReceiver );	
+			}
+		}
+		catch( Exception excError )
+		{
+			// Display Error Message
+			CUtilities.WriteLog( excError );
+		}
+	}
+	
+
+	// ----------------------------------------------------------------------
+	// Name: getItemListeners
+	// Abstract: get a list of all the item listeners
+	// ----------------------------------------------------------------------
+	public ItemListener[] getItemListeners( )
+	{
+		// Default to empty array( so length is set )
+		ItemListener ailEventReceivers[ ] = null;
+		
+		try
+		{	
 			int intIndex = 0;
 			
-			// Was it the JList?
-			if( meSource.getSource( ) == m_lstList )
-			{
-				// Yes
-				
-				// Change the source to the ListBox
-				meSource.setSource( this );
+			// Make an item listeners array
+			ailEventReceivers = new ItemListener[ m_alItemListeners.size( ) ];
 
-				// Kick the event up to all listeners of the ListBox
-				for( intIndex = 0; intIndex < amlListBox.length; intIndex++ )
+			// Build the array			
+			for( intIndex = 0; intIndex < m_alItemListeners.size( ); intIndex++ )
+			{
+				ailEventReceivers[ intIndex ]  = ( ItemListener ) m_alItemListeners.get( intIndex );
+			}
+		}
+		catch( Exception excError )
+		{
+			// Display Error Message
+			CUtilities.WriteLog( excError );
+		}
+		// Return result		
+		return ailEventReceivers;
+	}
+	
+
+	// ----------------------------------------------------------------------
+	// Name: removeItemListener
+	// Abstract: remove an item listener 
+	// ----------------------------------------------------------------------
+	public void removeItemListener( ItemListener ilEventReceiver )
+	{
+		try
+		{	
+			// Not null?
+			if( ilEventReceiver != null )
+			{
+				m_alItemListeners.remove( ilEventReceiver );	
+			}
+		}
+		catch( Exception excError )
+		{
+			// Display Error Message
+			CUtilities.WriteLog( excError );
+		}
+	}
+	
+
+	// ----------------------------------------------------------------------
+	// Name: itemStateChanged
+	// Abstract: Selected item index in combo box changed.
+	//			 Fire an action event because that's all we really are about.
+	//			 If we are quiet the don't fire the event.
+	// ----------------------------------------------------------------------
+	public void itemStateChanged( ItemEvent ieSource )
+	{
+		try
+		{		
+			int intIndex = 0;
+			ItemListener ailComboBox[] = null;
+			Object objOriginalSource = ieSource.getSource( );
+			
+			// Be quiet?
+			if( m_blnQuiet == false )
+			{
+				// No
+				
+				// Was it the JList?
+				if( ieSource.getSource( ) == m_cmbList )
 				{
-					amlListBox[ intIndex ].mouseClicked( meSource );
+					// Yes
+					
+				    // Was it for selected (ignored deselected)?
+				    if( ieSource.getStateChange( ) == ItemEvent.SELECTED )
+				    {
+				        // Yes, Change the source to the ComboBox
+    					ieSource.setSource( this );
+    	
+    					// Get all the listeners for the combo box
+    					ailComboBox = getItemListeners( );
+    	
+    					// Kick the event up to all listeners of the ListBox
+    					for( intIndex = 0; intIndex < ailComboBox.length; intIndex++ )
+    					{
+    						// Knock, knock
+    						ailComboBox[ intIndex ].itemStateChanged( ieSource );
+    					}
+    	
+    					// Put the original source back
+    					ieSource.setSource( objOriginalSource );
+				    }
 				}
 			}
 		}
@@ -950,12 +1003,9 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 			CUtilities.WriteLog( excError );
 		}
 	}
-	// Don't care
-	public void mousePressed( MouseEvent meSource ) { }
-	public void mouseReleased( MouseEvent meSource ) { }
-	public void mouseEntered( MouseEvent meSource ) { }
-	public void mouseExited( MouseEvent meSource ) { }
-
+	
+	
+	
 	// -----------------------------------------------------------------------------
 	// Name:	 CListItemRenderer     
 	// Abstract: Lets us change the color of selected items in the list.
@@ -1028,6 +1078,5 @@ public class CListBox extends javax.swing.JComponent implements MouseListener
 			return this;
 		}
 	}
-	
 }
 
