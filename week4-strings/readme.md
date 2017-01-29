@@ -24,6 +24,46 @@
   4. a sorting algorithm coded out (Bubble sort or Insertion sort because it is easy to code (they are not efficient))
   5. making arrays so large that the memory is consumed and your program crashes
 
+## Homework notes
+
+Don't do this, it is annoying and makes it hard to grade your homework. Yes, it may seem like a good idea but it just is really annoying:
+
+```java
+
+
+		Scanner s = new Scanner	(System.in);
+		int problemNumber = 0;
+		System.out.println("Choose what Problem to run from 1 to 4? ");
+		while(s.hasNext()) {
+			problemNumber = s.nextInt();
+			if(problemNumber >= 1) {
+				if(problemNumber <= 4) {
+					break;
+				}
+			}
+			System.out.println("Please enter a number from 1 to 4 only!");
+			System.out.println("Choose what Problem to run from 1 to 4? ");
+		}
+		
+		if (problemNumber == 1) {
+			problemOne(); // To call Problem 1
+		}
+		
+		if (problemNumber == 2) {
+			problemTwo(); // To call Problem 2
+		}
+		
+		if (problemNumber == 3) {
+			problemThree(); // To call Problem 3
+		}
+		
+		if (problemNumber == 4) {
+			problemFour(); // To call Problem 4
+		}
+
+```
+
+
 ## New Content Agenda
 
   Strings are probably one of the most important things to have a good grasp on how to manipulate if you are
