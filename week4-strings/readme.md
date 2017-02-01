@@ -26,7 +26,7 @@
 
 ## Homework notes
 
-Don't do this, it is annoying and makes it hard to grade your homework. Yes, it may seem like a good idea but it just is really annoying:
+Don't do this, it makes it hard to grade your homework. Yes, it may seem like a good idea but it just makes it difficult for me:
 
 ```java
 
@@ -62,6 +62,8 @@ Don't do this, it is annoying and makes it hard to grade your homework. Yes, it 
 		}
 
 ```
+
+__Don't turn in code that won't compile!!!!__ I can't grade code that won't compile. Fix all of you errors (the red bars in eclipse).
 
 
 ## New Content Agenda
