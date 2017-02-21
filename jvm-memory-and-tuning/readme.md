@@ -4,9 +4,7 @@ The JVM has many options around tuning memory usage and the behvior of the garba
 
 ## Youtube Videos:
 
-
-
-
+[Intro to JVM Memory - shows allocating arrays program](https://youtu.be/sdGYda20Y_U)
 
 
 
