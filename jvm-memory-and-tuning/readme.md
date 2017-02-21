@@ -2,12 +2,22 @@
 
 The JVM has many options around tuning memory usage and the behvior of the garbage collector.
 
+## Youtube Videos:
+
+
+
+
+
+
 
 
 ## Some nice tutorials and blog posts
 
 [Java Heap Space vs Stack](http://www.journaldev.com/4098/java-heap-space-vs-stack-memory)
 
+
+## Cool diagrams:
+![heap vs non-heap](./uDdEk.png)
 
 
 
