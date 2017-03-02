@@ -1,4 +1,13 @@
-# Week 13 / Week 14
+# Homework 9 and 10 examples
+
+This folder contains exmamples of homework 9 and 10. This includes connecting to Access and running
+a query as well as using the ActionListener interface. Check "examples-hmwk10" for Spring 2017 homework 10
+examples.
+
+Check "database" for an example Access database.
+
+Check "access-libs" to get copies of all of the required libraries to connection to Access with Java 8.
+
 
 
 ### Class agenda.
