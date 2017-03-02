@@ -5,6 +5,8 @@
 
 # Package Files #
 *.jar
+!jframe-actionlistener-access-db-cxn/access-libs/*.jar
+
 *.war
 *.ear
 
