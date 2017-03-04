@@ -2,6 +2,17 @@
 
 The JVM has many options around tuning memory usage and the behvior of the garbage collector.
 
+
+## Microbenchmarking
+
+The JVM uses a Just In Time Compiler (JIT), so you must warm code up before you test it. Java first executes code using an interpreter then decides to compile code when it gets hot. In order to make sure your code is compiled you should consider using this JVM flag:
+
+```
+-XX:+PrintCompilation
+```
+
+
+
 ## Youtube Videos:
 
 [Intro to JVM Memory - shows allocating arrays program](https://youtu.be/sdGYda20Y_U)
