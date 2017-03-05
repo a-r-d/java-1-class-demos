@@ -13,3 +13,5 @@ I have worked through a couple of common interview questions in Java here. Most 
 [Java Next Permutation of a String Algorithm](https://www.youtube.com/watch?v=M3c9OwEzFyM)
 
 [Reverse an Integer in Java (Interview Questions) ](https://www.youtube.com/watch?v=AkOJjMw7Xvo)
+
+[Java Maps Part 3: use HashMap to find number of word occurrences in a file](https://www.youtube.com/watch?v=UDLDWklX2YE)
