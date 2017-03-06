@@ -16,12 +16,12 @@ Each section builds on the last. You may break each part into a method in a sing
 
   1. You should now have a valid, existing file path from Part 1. You are now going to read the file attributes for the path. Create a "BasicFileAttributes" object using Files.readAttributes().
   2. Using the BasicFileAttributes object please print out the following information about the file:
-    a. Name of file
-    b. full path of file
-    c. size of the file
-    d. Is the file a directory? If not is it a normal file? 
-    e. When was the file created?
-    f. When was the file modified?
+    1. Name of file
+    2. full path of file
+    3. size of the file
+    4. Is the file a directory? If not is it a normal file? 
+    5. When was the file created?
+    6. When was the file modified?
   3. If the file was NOT A DIRECTORY MAKE THE USER ENTER ANOTHER PATH! This means you must repeat Part 1 if the file is not a directory.  
 
 
