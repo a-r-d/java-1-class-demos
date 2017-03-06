@@ -2,6 +2,8 @@
 
 Each section builds on the last. You may break each part into a method in a single class.
 
+[Intro youtube video for the homework](https://youtu.be/OZKU_gqjrQI)
+
 
 ## Part 1 - Does the file exist?
 
