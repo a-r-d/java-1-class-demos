@@ -33,3 +33,54 @@ Each section builds on the last. You may break each part into a method in a sing
   4. Count how many directories are inside of this dir, print the count. YOU DO NOT NEED TO DO THIS RECURSIVELY!
   5. what is the most recently created file in this dir? Print it out. YOU DO NOT NEED TO DO THIS RECURSIVELY!
   6. What is the oldest file in this dir? Print it out. YOU DO NOT NEED TO DO THIS RECURSIVELY!
+  
+  
+ ### Starting template for This homework
+ 
+ ```java
+ import java.nio.file.Path;
+import java.util.Scanner;
+
+public class ExploringTheFileSystemHomeworkStart {
+
+	Scanner scanner = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+		
+		boolean isADir = false;
+		Path path = null;
+		while(!isADir) {
+			path = part1();
+			isADir = part2(path);
+			// do some logic to repeat part 1 if we did not get a dir.
+		}
+		
+		part3(path);
+	}
+	
+	public static Path part1() {
+		
+		// put logic for part1
+		
+		return null;
+	}
+	
+	public static boolean part2(Path path) {
+		
+		// part 2 logic
+		
+		return false;
+	}
+	
+	
+	// should have a valid, existing, directory file path!
+	public static void part3(Path path) {
+		
+		// part 3 logic
+		
+	}
+	
+	
+
+}
+```
