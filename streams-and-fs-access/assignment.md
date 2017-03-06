@@ -1,4 +1,4 @@
-# Assignment week 8
+# Assignment week 11 - Exploring the filesystem
 
   You may combine these parts all into one class, despite what the instructions say. The instructions are just here for
   clarity, so if you combine the classes, make sure to CLEARLY separate them and leave me comments about what code corresponds to what homework section!
