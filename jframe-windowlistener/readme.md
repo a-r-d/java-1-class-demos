@@ -3,7 +3,7 @@
 
 ### Agenda Week 9
 
-- Go over homework #8 adn #10
+- Go over homework #9 and #10
 - Show WindowListener PPT
 - WindowListener code example
 - Show modularization PPT
