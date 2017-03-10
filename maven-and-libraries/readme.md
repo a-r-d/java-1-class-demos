@@ -1,4 +1,4 @@
-# Week 12 - Maven + Libraries
+# Week 15 - Maven + Libraries
 
 [Related youtube video playlist](https://www.youtube.com/playlist?list=PLWRvoIK5KFylpbX_0dFKre1SRhvRFHIwJ)
 
