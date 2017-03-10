@@ -1,4 +1,4 @@
-# Week 12 assignment
+# Week 15 assignment
 
 For this assignment we will practice using Maven. Please turn in your ENTIRE PROJECT! I want the pom.xml file as well as any Java files that you produce.
 
