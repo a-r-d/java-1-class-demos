@@ -1,5 +1,7 @@
 # Intro to assignment week 12 - Grep in Java
 
+[Youtube video introduction for starting the homework](https://youtu.be/ogySdYSt7Os)
+
 This week we will be focusing on reading and writing files. This will build on what we learned last week about
 creating "Path" objects.
 
@@ -8,6 +10,8 @@ writing a new file with the filtered data. If you have heard of the command line
 making a grep that takes in a files and writes out to another file.
 
 [grep wikipedia page](https://en.wikipedia.org/wiki/Grep)
+
+[Other code you should look at to help you with this homework](https://github.com/a-r-d/java-1-class-demos/blob/master/files-reading-and-writing/examples/ReadAndWriteStreamsAndTransform.java)
 
 
 ## The assignment described at a high level
