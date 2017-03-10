@@ -63,7 +63,7 @@ What Happened? Well we filterd on the word "Cottage" and only wrote lines of the
  7. Open the file from step 1 for reading. You may read all of the lines into an array of strings OR you open this a an input stream and stream the lines in.
  8. Open the filepath from step 5 for writing. 
  9. __Read each line from the file you opened in step 7.__ Do a string contains search of the line for the search term from step 3.
- 10. If you find the line from step 9 contains the search string, write the line to file you opened for writing in step 8.
+ 10. If you find the line from step 9 contains the search string, print the line to the console AND write the line to file you opened for writing in step 8.
  11. When you are done reading and searching each line, close both of the files.
  12. __Print the number of lines of text you matched and wrote to the console, indicating your results to the user.__
  
