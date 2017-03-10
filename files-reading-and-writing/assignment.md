@@ -70,3 +70,53 @@ What Happened? Well we filterd on the word "Cottage" and only wrote lines of the
  __EACH STEP IS WORTH (12 / 100) POINTS OUT OF 100 points total for the 12 steps__
  
  
+ ## Homework start template:
+ 
+ ```java
+ import java.nio.file.Path;
+import java.util.Scanner;
+
+public class GrepHomework {
+
+	Scanner scanner = new Scanner(System.in);
+
+	public static void main(String[] args) {
+
+		// 1
+		Path inputFile = readInputFile();
+
+		// 2
+		String searchString = readSearchString();
+
+		// 3
+		Path outputFile = readOutputFilePath();
+
+		// read in contents of input file
+		// open output file for writing
+
+		// filter contents
+
+		// write matching lines to output file
+
+		// close up everything
+
+	}
+
+	public static Path readInputFile() {
+		// TODO
+		return null;
+	}
+
+	public static String readSearchString() {
+		// TODO
+		return null;
+	}
+
+	public static Path readOutputFilePath() {
+		// TODO
+		return null;
+	}
+
+}
+```
+ 
