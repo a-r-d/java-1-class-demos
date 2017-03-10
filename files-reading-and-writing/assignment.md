@@ -1,4 +1,4 @@
-# Intro to assignment week 9
+# Intro to assignment week 9 - Grep in Java
 
 This week we will be focusing on reading and writing files. This will build on what we learned last week about
 creating "Path" objects.
@@ -6,6 +6,9 @@ creating "Path" objects.
 This week for the assignment we will be reading in a file, filtering the lines based on a search word and then
 writing a new file with the filtered data. If you have heard of the command line utility "grep" we will essentially be
 making a grep that takes in a files and writes out to another file.
+
+[grep wikipedia page](https://en.wikipedia.org/wiki/Grep)
+
 
 ## The assignment described at a high level
 
