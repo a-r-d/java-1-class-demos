@@ -1,4 +1,4 @@
-# Week 10 agenda
+# Week 13 agenda
 
  - Homework review / help
  - You can use class variables to pass data between steps in the homeworks.
@@ -10,7 +10,7 @@
  - Any question or suggestions on any of the homework? Please turn in old homework!
  - Generics + Collections.
 
-# Week 10: Collections Framework and Generics
+# Week 13: Collections Framework and Generics
 
 This is probably the most important chapter and section of the book to learn and study
 in terms of real world use and getting through an interview. Collections are a good
