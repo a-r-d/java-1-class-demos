@@ -1,4 +1,4 @@
-# Intro to assignment week 9 - Grep in Java
+# Intro to assignment week 12 - Grep in Java
 
 This week we will be focusing on reading and writing files. This will build on what we learned last week about
 creating "Path" objects.
