@@ -1,5 +1,7 @@
 # Week 13 Assignment - List, Set, Map and Word Frequencies.
 
+[Intro video for this assignment](https://youtu.be/epX1M0HAbzw)
+
 You will create a program that will allow you to practice using the collections List, Map and Set. Here are the instructions. 
 
 Here is a detailed example of code that can help you to generate an word frequency map. 
