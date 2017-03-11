@@ -1,4 +1,4 @@
-# Week 10 Assignment
+# Week 13 Assignment - List, Set, Map and Word Frequencies.
 
 You will create a program that will allow you to practice using the collections List, Map and Set. Here are the instructions. 
 
