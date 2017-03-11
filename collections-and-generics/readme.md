@@ -9,6 +9,11 @@
  - Be careful about when you are closing streams
  - Any question or suggestions on any of the homework? Please turn in old homework!
  - Generics + Collections.
+ 
+# Homework
+
+[Here is the video introducing the homework assignment](https://youtu.be/epX1M0HAbzw)
+ 
 
 # Week 13: Collections Framework and Generics
 
