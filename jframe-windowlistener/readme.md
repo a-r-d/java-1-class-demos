@@ -13,9 +13,9 @@
 
 ### Agenda Week 10
 
-- Go over homework for week 11 and 12
+- Go over homework #11 and #12
 - Go over building the form from last week's homework.
-- Show PPT for homework 13
+- Show PPT for homework 13, 14
 - Talk about this week's homework 13 - "Database Programming Delete"
 - Talk about homework 14 - "Database Programming Edit"
 - Go over the Utilities package that is provided to help complete the homework.
