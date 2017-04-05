@@ -1,6 +1,6 @@
 # Assignment week 11 - Exploring the filesystem
 
-Each section builds on the last. You may break each part into a method in a single class.
+Each section builds on the last. You should use the template at the bottom of this file to do your homework with (however you may choose to solve this any way to fully completes the assignment).
 
 [Intro youtube video for the homework](https://youtu.be/OZKU_gqjrQI)
 
