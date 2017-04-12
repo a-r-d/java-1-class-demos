@@ -12,7 +12,7 @@ Understanding how hashmaps work can help you to write fast, efficient, and good 
 ## Instructions
 
 1. Prompt the user to enter 3 sentences. The user enters by typing into the console (System.in). You can use Scanner and call ```scanner.nextLine()``` 3 times to read in the 3 sentences to 3 Strings.
-2. Split each sentence into words. You can do this by splitting on space character ```String.split(' ')```.
+2. Split each sentence into words. You can do this by splitting on space character ```someString.split(" ")```.
 3. Take each word and add it to a List of strings (```List<String>``` is the type). USE THE SAME LIST FOR ALL OF THE SENTENCES. YES, YOU NEED TO FIGURE OUT HOW TO COMBINE ALL OF THE STRINGS TOGETHER *hint hint*.
 4. When you are done reading in all of the sentences and adding all of the sentences, and collecting all of the words into a list, print out how many words TOTAL were entered.
 5. Now, create a Set of type "```Set<String>```" from your List. Your set will enforce uniqueness. Print out how many unique words there are.
