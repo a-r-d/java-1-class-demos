@@ -1,5 +1,9 @@
 # week 11 Assignment
 
+Example code to look at:
+ 1. [Date and Calendar example code](https://github.com/a-r-d/java-1-class-demos/blob/master/collections-utilities-and-dates/week11/DateAndCalExample.java)
+ 2. [Compare using comparator class](https://github.com/a-r-d/java-1-class-demos/blob/master/collections-utilities-and-dates/week11/CompareUsingComparator.java)
+ 3. [Compare using comparable interface on the things you are comparing](https://github.com/a-r-d/java-1-class-demos/blob/master/collections-utilities-and-dates/week11/CompareUsingComparable.java)
 
 ## Part 1: Dates, Calendar, and DateFormatter.
 
