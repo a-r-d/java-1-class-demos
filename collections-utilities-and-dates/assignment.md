@@ -16,6 +16,12 @@ For this part please use the Date Format mask:
 2. Use the ```GregorianCalender``` to set the date to one month, one day, and one hour ago. Print this date out.
 3. Read in a timestamp from the user (use Scanner, it will be a ```long```, so use ```.nextLong()```). Create a ```Date``` Object from this, and print it out formatted, with the above format mask.
 
+Note: Date class has a constructor that takes a timestamp. So you can do a thing like this:
+```java
+long timestamp = scanner.nextLong();
+Date usersDate = new Date(timestamp);
+```
+
 
 ## Part 2: Comparables
 
