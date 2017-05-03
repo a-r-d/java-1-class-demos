@@ -34,3 +34,30 @@
 ### JForm / JButton / JLabel / ActionListener example.
 
   Do class demo of the random form.
+  
+  
+  
+# Philosophy Of Exceptions in Java
+
+In java there are two types of exceptions: __checked__ and __unchecked__. The general rule that you may want to follow is this: _if an exception can be expected, and be recovered from by your program, make it checked. If it cannot be recovered from, make it an unchecked exception_. Also, keep in mind that all exceptions will implement ["throwable"](https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html). 
+
+[Check out more detail here](http://www.geeksforgeeks.org/checked-vs-unchecked-exceptions-in-java/). And read [Oracle's docs on unchecked exception controversy here](http://docs.oracle.com/javase/tutorial/essential/exceptions/runtime.html). 
+
+### Examples of UnChecked Exceptions:
+
+- RuntimeException
+- Error
+- NullpointerException
+- ArithmeticException
+
+### Examples of Checked Exceptions:
+
+- Exception
+- IOException
+- [XPathException](https://docs.oracle.com/javase/7/docs/api/javax/xml/xpath/XPathException.html)
+- [SAXException](https://docs.oracle.com/javase/7/docs/api/org/xml/sax/SAXException.html)
+
+## Extending exception classes
+
+If you want to make a checked exception, you should extend "Exception" class. If you want to make an unchecked exception you can extend "RuntimeException". 
+  
